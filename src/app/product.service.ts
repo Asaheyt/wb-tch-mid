@@ -19,4 +19,10 @@ export class ProductService {
     this.messageService.add('ProductService: fetched products');
     return products;
   }
+
+  getProduct(id: number): Observable<Product> {
+    const product = PRODUCTS.find(p => p.id == id)!;
+    this.messageService.add('ProductService: fetched product id=${id}');
+    return of(product);
+  }
 }
