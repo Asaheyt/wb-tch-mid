@@ -25,4 +25,20 @@ export class ProductsComponent implements OnInit {
       .subscribe(products => this.products = products)
   }
 
+
+  add(model: string): void {
+    model = model.trim();
+    if (!model) {
+      return;
+    }
+    this.productService.addProduct({model} as Product)
+      .subscribe(product => {
+        this.products.push(product);
+      })
+  }
+
+  delete(product: Product): void {
+    this.products = this.products.filter(p => p !== product);
+    this.productService.deleteProduct(product.id).subscribe();
+  }
 }

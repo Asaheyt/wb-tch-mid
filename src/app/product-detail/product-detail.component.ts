@@ -33,4 +33,11 @@ export class ProductDetailComponent implements OnInit {
   goBack(): void {
     this.location.back();
   }
+
+  save(): void {
+    if (this.product) {
+      this.productService.updateProduct(this.product)
+        .subscribe(() => this.goBack());
+    }
+  }
 }
